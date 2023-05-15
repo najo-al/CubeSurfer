@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviour
     }
   }
 
+  public void AddGems(){
+    gemCount += 100;
+  }
   public void StartGame()
   {
     Destroy(mainMenu);
