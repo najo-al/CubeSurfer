@@ -29,7 +29,7 @@ MonoBehaviour:
     - AppMessaging
     _values:
     - True
-    - False
+    - True
     - False
     - False
     - False
