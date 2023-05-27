@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace HmsPlugin
 {
-    public class HMSLeaderboardManager : HMSSingleton<HMSLeaderboardManager>
+    public class HMSLeaderboardManager : HMSEditorSingleton<HMSLeaderboardManager>
     {
 
         public IRankingsClient rankingsClient;
@@ -32,6 +32,15 @@ namespace HmsPlugin
 
         public Action<ScoreSubmissionInfo> OnSubmitScoreSuccess { get; set; }
         public Action<HMSException> OnSubmitScoreFailure { get; set; }
+
+        public Action<RankingScores> OnGetPlayerCenteredRankingScoresSuccess { get; set; }
+        public Action<HMSException> OnGetPlayerCenteredRankingScoresFailure { get; set; }
+
+        public Action<RankingScores> OnGetMoreScoresFromLeaderboardSuccess { get; set; }
+        public Action<HMSException> OnGetMoreScoresFromLeaderboardFailure { get; set; }
+
+        public Action OnGetRankingsSuccess { get; set; }
+        public Action<HMSException> OnGetRankingsFailure { get; set; }
 
         public void IsUserScoreShownOnLeaderboards()
         {
@@ -62,6 +71,18 @@ namespace HmsPlugin
                 Debug.LogError("[HMSLeaderboardManager]: SetUserScoreShownOnLeaderboards failed. CauseMessage: " + exception.WrappedCauseMessage + ", ExceptionMessage: " + exception.WrappedExceptionMessage);
                 OnSetUserScoreShownOnLeaderboardsFailure?.Invoke(exception);
             });
+        }
+
+        public void SubmitRankingScore(string leaderboardId, long score)
+        {
+            Debug.Log("[HMSLeaderboardManager] SubmitRankingScore");
+            rankingsClient.SubmitRankingScore(leaderboardId, score);
+        }
+
+        public void SubmitRankingScore(string leaderboardId, long score, string scoreTips)
+        {
+            Debug.Log("[HMSLeaderboardManager] SubmitRankingScore");
+            rankingsClient.SubmitRankingScore(leaderboardId, score, scoreTips);
         }
 
         public void SubmitScore(string leaderboardId, long score)
@@ -135,9 +156,25 @@ namespace HmsPlugin
             });
         }
 
+        public void GetScoresFromLeaderboard(string leaderboardId, int timeDimension, int maxResults, bool isRealTime)
+        {
+            ITask<RankingScores> task =
+                rankingsClient.GetRankingTopScores(leaderboardId, timeDimension, maxResults, isRealTime);
+
+            task.AddOnSuccessListener((result) =>
+            {
+                Debug.Log("[HMSLeaderboardManager] GetScoresFromLeaderboard SUCCESS");
+                OnGetScoresFromLeaderboardSuccess?.Invoke(result);
+
+            }).AddOnFailureListener((exception) =>
+            {
+                Debug.LogError("[HMSLeaderboardManager]: GetScoresFromLeaderboard failed. CauseMessage: " + exception.WrappedCauseMessage + ", ExceptionMessage: " + exception.WrappedExceptionMessage);
+                OnGetScoresFromLeaderboardFailure?.Invoke(exception);
+            });
+        }
+
         public void GetScoresFromLeaderboard(string leaderboardId, int timeDimension, int maxResults, int offsetPlayerRank, int pageDirection)
         {
-
             ITask<RankingScores> task =
                 rankingsClient.GetRankingTopScores(leaderboardId, timeDimension, maxResults, offsetPlayerRank, pageDirection);
 
@@ -151,6 +188,85 @@ namespace HmsPlugin
                 Debug.LogError("[HMSLeaderboardManager]: GetScoresFromLeaderboard failed. CauseMessage: " + exception.WrappedCauseMessage + ", ExceptionMessage: " + exception.WrappedExceptionMessage);
                 OnGetScoresFromLeaderboardFailure?.Invoke(exception);
             });
+        }
+
+        public void GetMoreScoresFromLeaderboard(string leaderboardId, long offsetPlayerRank, int maxResults, int pageDirection, int timeDimention)
+        {
+            var task = rankingsClient.GetMoreRankingScores(leaderboardId, offsetPlayerRank, maxResults, pageDirection, timeDimention);
+
+            task.AddOnSuccessListener((result) =>
+            {
+                Debug.Log("[HMSLeaderboardManager] GetMoreScoresFromLeaderboard SUCCESS");
+                OnGetMoreScoresFromLeaderboardSuccess?.Invoke(result);
+
+            }).AddOnFailureListener((exception) =>
+            {
+                Debug.LogError("[HMSLeaderboardManager]: GetMoreScoresFromLeaderboard failed. CauseMessage: " + exception.WrappedCauseMessage + ", ExceptionMessage: " + exception.WrappedExceptionMessage);
+                OnGetMoreScoresFromLeaderboardFailure?.Invoke(exception);
+            });
+        }
+
+        public void GetPlayerCenteredRankingScores(string leaderboardId, int timeDimension, int maxResults, bool isRealTime)
+        {
+            var task = rankingsClient.GetPlayerCenteredRankingScores(leaderboardId, timeDimension, maxResults, isRealTime);
+
+            task.AddOnSuccessListener((result) =>
+            {
+                Debug.Log("[HMSLeaderboardManager] GetPlayerCenteredRankingScores SUCCESS");
+                OnGetPlayerCenteredRankingScoresSuccess?.Invoke(result);
+            }).AddOnFailureListener((exception) =>
+            {
+                Debug.LogError("[HMSLeaderboardManager]: GetPlayerCenteredRankingScores failed. CauseMessage: " + exception.WrappedCauseMessage + ", ExceptionMessage: " + exception.WrappedExceptionMessage);
+                OnGetPlayerCenteredRankingScoresFailure?.Invoke(exception);
+            });
+        }
+
+        public void GetPlayerCenteredRankingScores(string leaderboardId, int timeDimension, int maxResults, long offsetPlayerRank, int pageDirection)
+        {
+            var task = rankingsClient.GetPlayerCenteredRankingScores(leaderboardId, timeDimension, maxResults, offsetPlayerRank, pageDirection);
+
+            task.AddOnSuccessListener((result) =>
+            {
+                Debug.Log("[HMSLeaderboardManager] GetPlayerCenteredRankingScores SUCCESS");
+                Debug.LogWarning("[HMSLeaderboardManager] " + result == null ? "null" : "not null");
+                Debug.LogWarning("[HMSLeaderboardManager]" + result.Ranking.RankingDisplayName + ", Count: " + result.RankingScore.Count);
+                if (result.RankingScore.Count > 0)
+                {
+                    Debug.LogWarning("Name: " + result.RankingScore[0].DisplayRank);
+                    Debug.LogWarning("Score: " + result.RankingScore[0].PlayerRawScore);
+                }
+                OnGetPlayerCenteredRankingScoresSuccess?.Invoke(result);
+            }).AddOnFailureListener((exception) =>
+            {
+                Debug.LogError("[HMSLeaderboardManager]: GetPlayerCenteredRankingScores failed. CauseMessage: " + exception.WrappedCauseMessage + ", ExceptionMessage: " + exception.WrappedExceptionMessage);
+                OnGetPlayerCenteredRankingScoresFailure?.Invoke(exception);
+            });
+        }
+
+        public void GetRankings(string leaderboardId)
+        {
+            rankingsClient.GetRankingIntent(leaderboardId, () =>
+             {
+                 Debug.Log("[HMSLeaderboardManager] GetRankings SUCCESS");
+                 OnGetRankingsSuccess?.Invoke();
+             }, (exception) =>
+             {
+                 Debug.LogError("[HMSLeaderboardManager]: GetRankings failed. CauseMessage: " + exception.WrappedCauseMessage + ", ExceptionMessage: " + exception.WrappedExceptionMessage);
+                 OnGetRankingsFailure?.Invoke(exception);
+             });
+        }
+
+        public void GetRankings(string leaderboardId, int timeDimension)
+        {
+            rankingsClient.GetRankingIntent(leaderboardId, timeDimension, () =>
+             {
+                 Debug.Log("[HMSLeaderboardManager] GetRankings SUCCESS");
+                 OnGetRankingsSuccess?.Invoke();
+             }, (exception) =>
+             {
+                 Debug.LogError("[HMSLeaderboardManager]: GetRankings failed. CauseMessage: " + exception.WrappedCauseMessage + ", ExceptionMessage: " + exception.WrappedExceptionMessage);
+                 OnGetRankingsFailure?.Invoke(exception);
+             });
         }
     }
 }

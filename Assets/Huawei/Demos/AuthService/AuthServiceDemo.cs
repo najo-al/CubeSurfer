@@ -1,11 +1,14 @@
 ﻿using HmsPlugin;
+
 using HuaweiMobileServices.AuthService;
 using HuaweiMobileServices.Base;
 using HuaweiMobileServices.Id;
 using HuaweiMobileServices.Utils;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,19 +18,59 @@ public class AuthServiceDemo : MonoBehaviour
     private AGConnectUser user = null;
     private Text loggedInUser;
 
-    public GameObject verifyCodePhone;
-    public GameObject verifyCodeEmail;
+    private GameObject verifyCodePhone;
+    private GameObject verifyCodeEmail;
 
     private InputField PhoneCountryCode, PhoneNumber, PhoneVerifyCode, PhonePassword;
     private InputField EmailAddress, EmailVerifyCode, EmailPassword;
+
+    private Button Btn_AnonymousLogin;
+    private Button Btn_AccountLogin;
+    private Button Btn_RegisterWithMobileNumber;  // Register w/ Mobile Number
+    private Button Btn_RegisterWithEmail;  // Register w/ E-Mail
+    private Button Btn_SignOut;
+    private Button Btn_DeleteUser;
 
     private const string NOT_LOGGED_IN = "No user logged in";
     private const string LOGGED_IN = "{0} is logged in";
     private const string LOGGED_IN_ANONYMOUSLY = "Anonymously Logged In";
     private const string LOGIN_ERROR = "Error or cancelled login";
 
+    private void Awake()
+    {
+        Btn_AnonymousLogin = GameObject.Find("Anonymous Login").GetComponent<Button>();
+        Btn_AccountLogin = GameObject.Find("Huawei Account Login").GetComponent<Button>();
+        Btn_RegisterWithMobileNumber = GameObject.Find("Register w/ Mobile Number").GetComponent<Button>();
+        Btn_RegisterWithEmail = GameObject.Find("Register w/ E-Mail").GetComponent<Button>();
+        Btn_DeleteUser = GameObject.Find("DeleteUser").GetComponent<Button>();
+        Btn_SignOut = GameObject.Find("SignOut").GetComponent<Button>();
+    }
+
+    private void OnEnable()
+    {
+        Btn_AnonymousLogin.onClick.AddListener(SignInAnonymously);
+        Btn_AccountLogin.onClick.AddListener(SignInWithHuaweiAccount);
+        Btn_RegisterWithMobileNumber.onClick.AddListener(RegisterWithPhoneNumber);
+        Btn_RegisterWithEmail.onClick.AddListener(RegisterWithEmail);
+        Btn_DeleteUser.onClick.AddListener(DeleteUser);
+        Btn_SignOut.onClick.AddListener(SignOut);
+    }
+
+    private void OnDisable()
+    {
+        Btn_AnonymousLogin.onClick.RemoveListener(SignInAnonymously);
+        Btn_AccountLogin.onClick.RemoveListener(SignInWithHuaweiAccount);
+        Btn_RegisterWithMobileNumber.onClick.RemoveListener(RegisterWithPhoneNumber);
+        Btn_RegisterWithEmail.onClick.RemoveListener(RegisterWithEmail);
+        Btn_DeleteUser.onClick.RemoveListener(DeleteUser);
+        Btn_SignOut.onClick.RemoveListener(SignOut);
+    }
+
     public void Start()
     {
+        verifyCodePhone = GameObject.Find("verifyCodePhone");
+        verifyCodeEmail = GameObject.Find("verifyCodeEmail");
+
         loggedInUser = GameObject.Find("LoggedUserText").GetComponent<Text>();
         loggedInUser.text = NOT_LOGGED_IN;
 
@@ -47,9 +90,10 @@ public class AuthServiceDemo : MonoBehaviour
         authServiceManager.OnCreateUserSuccess = OnAuthSericeCreateUserSuccess;
         authServiceManager.OnCreateUserFailed = OnAuthSericeCreateUserFailed;
 
-        if (authServiceManager.GetCurrentUser() != null)
+        user = authServiceManager.GetCurrentUser();
+
+        if (user != null)
         {
-            user = authServiceManager.GetCurrentUser();
             loggedInUser.text = user.IsAnonymous() ? LOGGED_IN_ANONYMOUSLY : string.Format(LOGGED_IN, user.DisplayName);
         }
     }
@@ -88,9 +132,9 @@ public class AuthServiceDemo : MonoBehaviour
 
     public void SignInWithHuaweiAccount()
     {
-        HMSAccountManager.Instance.OnSignInSuccess = OnAccountKitLoginSuccess;
-        HMSAccountManager.Instance.OnSignInFailed = OnAuthSericeSignInFailed;
-        HMSAccountManager.Instance.SignIn();
+        HMSAccountKitManager.Instance.OnSignInSuccess = OnAccountKitLoginSuccess;
+        HMSAccountKitManager.Instance.OnSignInFailed = OnAuthSericeSignInFailed;
+        HMSAccountKitManager.Instance.SignIn();
     }
 
     public void SignInAnonymously() => authServiceManager.SignInAnonymously();
@@ -102,7 +146,7 @@ public class AuthServiceDemo : MonoBehaviour
             .Locale(Locale.GetDefault())
             .SendInterval(30).Build();
 
-        PhoneAuthProvider.RequestVerifyCode(PhoneCountryCode.text, PhoneNumber.text, verifyCodeSettings)
+        AGConnectAuth.GetInstance().RequestVerifyCode(PhoneCountryCode.text, PhoneNumber.text, verifyCodeSettings)
             .AddOnSuccessListener(verifyCodeResult =>
             {
                 verifyCodePhone.SetActive(true);
@@ -130,7 +174,7 @@ public class AuthServiceDemo : MonoBehaviour
             .Locale(Locale.GetDefault())
             .SendInterval(30).Build();
 
-        EmailAuthProvider.RequestVerifyCode(EmailAddress.text, verifyCodeSettings)
+        AGConnectAuth.GetInstance().RequestVerifyCode(EmailAddress.text, verifyCodeSettings)
             .AddOnSuccessListener(result =>
             {
                 verifyCodeEmail.SetActive(true);

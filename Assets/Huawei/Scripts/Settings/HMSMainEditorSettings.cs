@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace HmsPlugin
 {
@@ -8,14 +9,17 @@ namespace HmsPlugin
 
         private SettingsScriptableObject loadedSettings;
 
-        private Settings _settings;
-        public Settings Settings => _settings;
+        private HMSSettings _settings;
+        public HMSSettings Settings => _settings;
 
         public HMSMainEditorSettings()
         {
             loadedSettings = ScriptableHelper.Load<SettingsScriptableObject>(SettingsFilename, "Assets/Huawei/Settings/Resources");
 
-            Debug.Assert(loadedSettings != null, "Failed to load the " + SettingsFilename);
+            if (loadedSettings == null)
+            {
+                throw new NullReferenceException("Failed to load the " + SettingsFilename + ". Please restart Unity Editor");
+            }
             _settings = loadedSettings.settings;
 
             _settings.OnDictionaryChanged += _settings_OnDictionaryChanged;

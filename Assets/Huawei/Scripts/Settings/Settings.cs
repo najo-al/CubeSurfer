@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HmsPlugin
 {
     // an interface just for reading
-    public interface ISettings
+    public interface IHMSSettings
     {
         event Action<string> OnValueChanged;
 
@@ -17,7 +17,7 @@ namespace HmsPlugin
     }
 
     [Serializable]
-    public class Settings : SerializableDictionary<string, string>, ISettings
+    public class HMSSettings : SerializableDictionary<string, string>, IHMSSettings
     {
         public int GetInt(string key, int defaultValue = 0)
         {
@@ -36,6 +36,25 @@ namespace HmsPlugin
         public void SetInt(string key, int value)
         {
             Set(key, value.ToString());
+        }
+
+        public void SetLong(string key, long value)
+        {
+            Set(key, value.ToString());
+        }
+
+        public long GetLong(string key, long defaultValue = 0)
+        {
+            var stringValue = Get(key, null);
+            if (stringValue != null)
+            {
+                long outNumber;
+                if (long.TryParse(stringValue, out outNumber))
+                {
+                    return outNumber;
+                }
+            }
+            return defaultValue;
         }
 
         public bool GetBool(string key, bool defaultValue = false)
