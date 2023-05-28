@@ -61,6 +61,21 @@ namespace HuaweiConstants
         }
 
     }
+
+    public enum UnityBannerAdSizeType
+    {
+        BANNER_SIZE_320_50,
+        BANNER_SIZE_320_100,
+        BANNER_SIZE_468_60,
+        BANNER_SIZE_DYNAMIC,
+        BANNER_SIZE_728_90,
+        BANNER_SIZE_300_250,
+        BANNER_SIZE_SMART,
+        BANNER_SIZE_160_600,
+        BANNER_SIZE_360_57,
+        BANNER_SIZE_360_144
+    }
+
     public static class UnityBannerAdSize
     {
 
@@ -85,11 +100,18 @@ namespace HuaweiConstants
         public const string BANNER_SIZE_360_57 = "BANNER_SIZE_360_57";
 
         public const string BANNER_SIZE_360_144 = "BANNER_SIZE_360_144";
-         
+
+        public static string CustomBannerSize(int widht, int height)
+        {
+            return ($"BANNER_SIZE_{widht}_{height}");
+        }
+
 
     }
+
     public static class HMSResponses
     {
+        public static List<int> UnresolvableStatusCodes = new List<int> { 6003 };
 
         public enum GameStatusCodes
         {
@@ -128,6 +150,57 @@ namespace HuaweiConstants
             PRODUCT_SOME_NOT_EXIST = 40004
 
         }
-    }
 
+        public enum IapStatusCodes : int
+        {
+            ORDER_STATE_SUCCESS = 0,
+            ORDER_STATE_FAILED = -1,
+            ORDER_STATE_DEFAULT_CODE = 1,
+            ORDER_STATE_CANCEL = 60000,
+            ORDER_STATE_PARAM_ERROR = 60001,
+            ORDER_STATE_IAP_NOT_ACTIVATED = 60002,
+            ORDER_STATE_PRODUCT_INVALID = 60003,
+            ORDER_STATE_CALLS_FREQUENT = 60004,
+            ORDER_STATE_NET_ERROR = 60005,
+            ORDER_STATE_PMS_TYPE_NOT_MATCH = 60006,
+            ORDER_STATE_PRODUCT_COUNTRY_NOT_SUPPORTED = 60007,
+            ORDER_HWID_NOT_LOGIN = 60050,
+            ORDER_PRODUCT_OWNED = 60051,
+            ORDER_PRODUCT_NOT_OWNED = 60052,
+            ORDER_PRODUCT_CONSUMED = 60053,
+            ORDER_ACCOUNT_AREA_NOT_SUPPORTED = 60054,
+            ORDER_HIGH_RISK_OPERATIONS = 60056
+        }
+
+        public enum AppUpdateStatusCode : int
+        {
+            PARAMETER_ERROR = 1,
+            CONNECT_ERROR = 2,
+            NO_UPGRADE_INFO = 3,
+            CANCEL = 4,
+            INSTALL_FAILED = 5,
+            CHECK_FAILED = 6,
+            HAS_UPGRADE_INFO = 7,
+            MARKET_FORBID = 8,
+            IN_MARKET_UPDATING = 9
+        }
+
+        public enum AppUpdateRtnCode : int
+        {
+            NORMAL = 0,
+            NO_NETWORK_AVAILABLE = 1,
+            JSON_EXCEPTION = 2,
+            PARAMETER_EXCEPTION = 3,
+            IO_EXCEPTION = 4,
+            NETWORK_EXCEPTION = 5,
+            UNKNOWN_ERROR = 6,
+            OBSFUCATION_NOT_EXCLUDED = 7
+        }
+
+        public enum AppUpdateButtonStatus : int
+        {
+            USER_CHOOSES_UPDATE_LATER = 100,
+            USER_CHOOSES_UPDATE_NOW = 101
+        }
+    }
 }

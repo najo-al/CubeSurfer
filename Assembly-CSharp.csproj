@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{A41F3597-ECE9-6994-A31B-6DF4681B1F83}</ProjectGuid>
+    <ProjectGuid>{E1BC8828-7D21-6F6B-9889-D247FF79F4BA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -47,71 +47,22 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Huawei\Scripts\AuthService\HMSAuthServiceManager.cs" />
-     <Compile Include="Assets\Huawei\Demos\IAP\FetchProducts.cs" />
      <Compile Include="Assets\_Scripts\SwerveInputSystem.cs" />
      <Compile Include="Assets\_Scripts\Instantiator.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Utils\HuaweiConstants.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Game\HMSLeaderboardEntry.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Settings\HMSRemoteConfigSettings.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Utils\HMSSingleton.cs" />
      <Compile Include="Assets\_Scripts\GameManager.cs" />
      <Compile Include="Assets\_Scripts\AdsManager.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Utils\SerializableDictionary.cs" />
      <Compile Include="Assets\_Scripts\InterstitialAdLoad.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Push\HMSPushKitManager.cs" />
-     <Compile Include="Assets\Huawei\Scripts\IAP\HMSIAPProductType.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Settings\Settings.cs" />
      <Compile Include="Assets\_Scripts\PlayerController.cs" />
      <Compile Include="Assets\ImportedAssets\AurynSky\Gems Ultimate Pack\Scripts\AnimationScript.cs" />
      <Compile Include="Assets\_Scripts\BuyGems.cs" />
-     <Compile Include="Assets\Huawei\Scripts\AppMessaging\HMSAppMessagingManager.cs" />
-     <Compile Include="Assets\Huawei\Demos\IAP\IapDemoManager.cs" />
-     <Compile Include="Assets\Huawei\Demos\Game\GameDemoManager.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Settings\HMSAdsKitSettings.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Game\HMSSaveGameManager.cs" />
      <Compile Include="Assets\_Scripts\DestroyCube.cs" />
      <Compile Include="Assets\_Scripts\MenuBannerAd.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Analytics\HMSAnalyticsManager.cs" />
-     <Compile Include="Assets\Huawei\Demos\Analytics\AnalyticsDemoManager.cs" />
-     <Compile Include="Assets\Huawei\Demos\CloudDB\CloudDBDemo.cs" />
      <Compile Include="Assets\_Scripts\SpinningObstacle.cs" />
-     <Compile Include="Assets\Huawei\Demos\NearbyService\NearbyDemoManager.cs" />
-     <Compile Include="Assets\Huawei\Scripts\CloudDB\BookInfo.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Utils\HMSSafeArea.cs" />
-     <Compile Include="Assets\Huawei\Demos\Account\AccountDemoManager.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Account\HMSAccountManager.cs" />
-     <Compile Include="Assets\Huawei\Scripts\IAP\HMSIAPManager.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Utils\HMSIAPConstants.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Game\HMSAchievementsManager.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Utils\ScriptableHelper.cs" />
-     <Compile Include="Assets\Huawei\Scripts\RemoteConfig\HMSRemoteConfigManager.cs" />
-     <Compile Include="Assets\Huawei\Scripts\IAP\UnityPurchase\HuaweiStore.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Settings\HMSIAPProductListSettings.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Ads\HMSAdsKitManager.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Settings\HMSIAPKitSettings.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Settings\HMSAchievementsSettings.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Game\HMSGameManager.cs" />
      <Compile Include="Assets\_Scripts\PlayerMovement.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Settings\SettingsScriptableObject.cs" />
-     <Compile Include="Assets\Huawei\Scripts\CloudDB\HMSCloudDBManager.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Crash\HMSCrashManager.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Settings\HMSRemoteDefaultValueSettings.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Game\HMSLeaderboardManager.cs" />
-     <Compile Include="Assets\Huawei\Demos\RemoteConfig\RemoteConfigDemo.cs" />
      <Compile Include="Assets\_Scripts\MultiplierHandler.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Settings\HMSMainEditorSettings.cs" />
      <Compile Include="Assets\_Scripts\SwerveMovement.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Game\HMSAchievementsEntry.cs" />
      <Compile Include="Assets\_Scripts\ColorSelectorButton.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Settings\HMSGameServiceSettings.cs" />
-     <Compile Include="Assets\Huawei\Scripts\NearbyService\HMSNearbyServiceManager.cs" />
      <Compile Include="Assets\_Scripts\ProgressBar.cs" />
-     <Compile Include="Assets\Huawei\Scripts\IAP\UnityPurchase\HuaweiPurchasingModule.cs" />
-     <Compile Include="Assets\Huawei\Demos\AuthService\AuthServiceDemo.cs" />
-     <Compile Include="Assets\Huawei\Scripts\Settings\HMSLeaderboardSettings.cs" />
-     <Compile Include="Assets\Huawei\Demos\Ads\AdsDemoManager.cs" />
-     <Compile Include="Assets\Huawei\Demos\Push\PushDemoManager.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -126,11 +77,9 @@
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-     <None Include="Assets\Huawei\Dlls\link.xml" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
-     <None Include="Assets\Resources\xml\remoteConfig.xml" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
@@ -349,10 +298,13 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.40f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
  </Reference>
  <Reference Include="HuaweiMobileServices">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Assets/Huawei/Dlls/HuaweiMobileServices.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Assets/Huawei/Dlls/HuaweiMobileServices.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/Newtonsoft.Json.dll</HintPath>
+ </Reference>
+ <Reference Include="EPPlus">
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Assets/Huawei/Dlls/EPPlus.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.40f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -700,82 +652,92 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.40f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
  <Reference Include="Purchasing.Common">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Purchasing.Common.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Purchasing.Common.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Notifications">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.Notifications.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.Notifications.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Purchasing">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/UnityEngine.Purchasing.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Purchasing.SecurityStub">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/UnityEngine.Purchasing.SecurityStub.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/UnityEngine.Purchasing.SecurityStub.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PlasticSCM.Editor">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Notifications.iOS">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.Notifications.iOS.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.Notifications.iOS.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Services.Core">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.Services.Core.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.Services.Core.dll</HintPath>
  </Reference>
  <Reference Include="Cinemachine">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Services.Core.Analytics">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.Services.Core.Analytics.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.Services.Core.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Purchasing.SecurityCore">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/UnityEngine.Purchasing.SecurityCore.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/UnityEngine.Purchasing.SecurityCore.dll</HintPath>
  </Reference>
  <Reference Include="com.unity.cinemachine.editor">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Purchasing.Codeless">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/UnityEngine.Purchasing.Codeless.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/UnityEngine.Purchasing.Codeless.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Services.Core.Environments">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.Services.Core.Environments.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.Services.Core.Environments.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Mobile.AndroidLogcat.Editor">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.Mobile.AndroidLogcat.Editor.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.Mobile.AndroidLogcat.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Purchasing.Stores">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/UnityEngine.Purchasing.Stores.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/UnityEngine.Purchasing.Stores.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Purchasing">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/UnityEditor.Purchasing.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/UnityEditor.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Notifications.Android">
- <HintPath>C:/Users/bgd45/Desktop/cubesurfer2/CubeSurfer-IAP-integration/Library/ScriptAssemblies/Unity.Notifications.Android.dll</HintPath>
+ <HintPath>C:/Users/bgd45/Desktop/CubeSurfer/Library/ScriptAssemblies/Unity.Notifications.Android.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="HuaweiMobileServices.Editor.csproj">
+      <Project>{99C3A7D0-FBEB-37F3-01F8-0C2AB91025C8}</Project>
+      <Name>HuaweiMobileServices.Editor</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="HuaweiMobileServices.Core.csproj">
+      <Project>{205D5C51-18AE-724A-022E-F03A2EB173EF}</Project>
+      <Name>HuaweiMobileServices.Core</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

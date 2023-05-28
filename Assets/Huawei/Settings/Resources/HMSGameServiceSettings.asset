@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: HMSGameServiceSettings
   m_EditorClassIdentifier: 
   settings:
-    _keys:
-    - InitializeOnStart
-    _values:
-    - True
+    _keys: []
+    _values: []

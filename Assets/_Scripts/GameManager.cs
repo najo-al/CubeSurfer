@@ -21,7 +21,10 @@ public class GameManager : MonoBehaviour
   public GameObject watchAdsButtonVic;
   public GameObject watchAdsButtonDef;
   public static bool restartGame = false;
-  public int gemCount = 0;
+  public bool showAds = true;
+  public GameObject StoreScreen;
+  public IAPManager iapManager;
+  public int gemCount = 0; 
   public TMP_Text gemCountText;
   bool audioEnabled = true;
 
@@ -57,6 +60,21 @@ public class GameManager : MonoBehaviour
       progressBar.SetActive(true);
       gameButtons.SetActive(true);
     }
+  }
+
+  public void AddGemsCount(int count){
+    gemCount+= count;
+    PlayerPrefs.SetInt("gemCount", gemCount);
+  }
+
+  public void OpenBuyScreen() {
+    mainMenu.SetActive(false);
+    StoreScreen.SetActive(true);
+  }
+
+  public void CloseBuyScreen(){
+    StoreScreen.SetActive(false);
+    mainMenu.SetActive(true);
   }
   
 

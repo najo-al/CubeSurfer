@@ -37413,6 +37413,35 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Convert_ToBoolean_m8616B73D87CCE363AFBF9
 		return (bool)((!(((uint64_t)L_0) <= ((uint64_t)((int64_t)((int64_t)0)))))? 1 : 0);
 	}
 }
+// System.Boolean System.Convert::ToBoolean(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Convert_ToBoolean_m058EED31CCC96941FC99988427B550AE6BC72134 (String_t* ___value0, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Boolean_t07D1E3F34E4813023D64F584DFF7B34C9D922F37_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		String_t* L_0 = ___value0;
+		if (L_0)
+		{
+			goto IL_0005;
+		}
+	}
+	{
+		return (bool)0;
+	}
+
+IL_0005:
+	{
+		String_t* L_1 = ___value0;
+		IL2CPP_RUNTIME_CLASS_INIT(Boolean_t07D1E3F34E4813023D64F584DFF7B34C9D922F37_il2cpp_TypeInfo_var);
+		bool L_2;
+		L_2 = Boolean_Parse_mBDB88ED8C6CA0DF08DFBBD1B381D5DDDB2A08B2B(L_1, /*hidden argument*/NULL);
+		return L_2;
+	}
+}
 // System.Boolean System.Convert::ToBoolean(System.String,System.IFormatProvider)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Convert_ToBoolean_m7A0983C9123AE3E6BC39379ED4C3BDE21CC9C7CE (String_t* ___value0, RuntimeObject* ___provider1, const RuntimeMethod* method)
 {

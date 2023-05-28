@@ -30183,7 +30183,7 @@ IL_007b:
 		Type_t * L_29 = ___destinationType1;
 		NullCheck(L_29);
 		Type_t * L_30;
-		L_30 = VirtFuncInvoker0< Type_t * >::Invoke(93 /* System.Type System.Type::GetElementType() */, L_29);
+		L_30 = VirtFuncInvoker0< Type_t * >::Invoke(95 /* System.Type System.Type::GetElementType() */, L_29);
 		V_1 = L_30;
 		Type_t * L_31 = V_1;
 		IL2CPP_RUNTIME_CLASS_INIT(XmlBaseConverter_t4F695A2F48A15F26227A564201074D2EBF094C55_il2cpp_TypeInfo_var);

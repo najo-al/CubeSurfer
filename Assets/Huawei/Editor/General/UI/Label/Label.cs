@@ -10,16 +10,19 @@ namespace HmsPlugin.Label
     {
         private string _text;
         private string _tooltip;
+        private GUIContent _guiContent;
 
         private GUIStyle _style;
         private FontStyle? _fontStyle;
         private bool _richTextEnabled = false;
         private bool _stretchWidth = false;
+        private int? _fontSize;
 
-        public Label(string text, string tooltip = null)
+        public Label(string text = null, string tooltip = null, GUIContent guiContent = null)
         {
             _text = text;
             _tooltip = tooltip;
+            _guiContent = guiContent;
         }
 
         public Label()
@@ -29,9 +32,9 @@ namespace HmsPlugin.Label
 
         public virtual void Draw()
         {
-            if (_text != null)
+            if (_text != null || _guiContent != null)
             {
-                Draw(_text, _tooltip);
+                Draw(_text, _tooltip,_guiContent);
             }
         }
 
@@ -39,6 +42,11 @@ namespace HmsPlugin.Label
         {
             _text = text;
             return this;
+        }
+
+        public string GetText()
+        {
+            return _text;
         }
 
         public Label SetBold(bool bold)
@@ -77,6 +85,12 @@ namespace HmsPlugin.Label
             return this;
         }
 
+        public Label SetFontSize(int size)
+        {
+            _fontSize = size;
+            return this;
+        }
+
         public Label SetStyle(GUIStyle style)
         {
             _style = style;
@@ -89,7 +103,7 @@ namespace HmsPlugin.Label
             return this;
         }
 
-        protected void Draw(string text, string tooltip)
+        protected void Draw(string text, string tooltip, GUIContent guiContent)
         {
             if (_style == null)
             {
@@ -102,8 +116,14 @@ namespace HmsPlugin.Label
 
             _style.stretchWidth = _stretchWidth;
             _style.richText = _richTextEnabled;
+            if (_fontSize.HasValue)
+                _style.fontSize = _fontSize.Value;
 
-            if (string.IsNullOrEmpty(tooltip))
+            if (guiContent != null) 
+            {
+                GUILayout.Label(guiContent, _style);
+            }
+            else if (string.IsNullOrEmpty(tooltip))
             {
                 GUILayout.Label(new GUIContent(text), _style);
             }

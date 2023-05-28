@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     _keys:
+    - AppCompat
     - AdsKit
     - AccountKit
     - GameService
@@ -27,7 +28,20 @@ MonoBehaviour:
     - DriveKit
     - NearbyService
     - AppMessaging
+    - AppLinking
+    - Location
+    - Scan
+    - CloudStorage
+    - APM
+    - Modeling3dkit
     _values:
+    - True
+    - True
+    - False
+    - False
+    - False
+    - False
+    - False
     - True
     - False
     - False

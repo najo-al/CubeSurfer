@@ -1,107 +1,157 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using HuaweiConstants;
-using HuaweiMobileServices.Base;
+﻿using HmsPlugin;
+
 using HuaweiMobileServices.IAP;
-using System;
-using UnityEngine.Events;
-using HuaweiMobileServices.Id;
-using HmsPlugin;
 using HuaweiMobileServices.Utils;
-using UnityEngine.UI;
+
+using System;
+using System.Collections.Generic;
+
+using UnityEngine;
 
 public class IapDemoManager : MonoBehaviour
 {
-
-    [SerializeField]
-    private Text statusText;
-    private List<InAppPurchaseData> productPurchasedList;
-    public List<ProductInfo> productInfoList;
-    List<string> subscriptions = new List<string>();
-    List<string>  nonConsumable = new List<string>();
-    List<string> consumable = new List<string>();
-    
-
-
     // Please insert your products via custom editor. You can find it in Huawei > Kit Settings > IAP tab.
+
+    public static Action<string> IAPLog;
+
+    List<InAppPurchaseData> consumablePurchaseRecord = new List<InAppPurchaseData>();
+    List<InAppPurchaseData> activeNonConsumables = new List<InAppPurchaseData>();
+    List<InAppPurchaseData> activeSubscriptions = new List<InAppPurchaseData>();
+
+    #region Singleton
+
+    public static IapDemoManager Instance { get; private set; }
+    private void Singleton()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    #endregion
+
+    #region Monobehaviour
+
+    private void OnEnable()
+    {
+        HMSIAPManager.Instance.OnBuyProductSuccess += OnBuyProductSuccess;
+        HMSIAPManager.Instance.OnInitializeIAPSuccess += OnInitializeIAPSuccess;
+        HMSIAPManager.Instance.OnInitializeIAPFailure += OnInitializeIAPFailure;
+        HMSIAPManager.Instance.OnBuyProductFailure += OnBuyProductFailure;
+    }
+
+    private void OnDisable()
+    {
+        HMSIAPManager.Instance.OnBuyProductSuccess -= OnBuyProductSuccess;
+        HMSIAPManager.Instance.OnInitializeIAPSuccess -= OnInitializeIAPSuccess;
+        HMSIAPManager.Instance.OnInitializeIAPFailure -= OnInitializeIAPFailure;
+        HMSIAPManager.Instance.OnBuyProductFailure -= OnBuyProductFailure;
+    }
+
+    void Awake()
+    {
+        Singleton();
+        Screen.orientation = ScreenOrientation.Landscape;
+    }
 
     void Start()
     {
-        Debug.Log("[HMS]: IapDemoManager Started");
-        HMSIAPManager.Instance.OnBuyProductSuccess += OnBuyProductSuccess;
-        HMSIAPManager.Instance.OnCheckIapAvailabilitySuccess += OnCheckIapAvailabilitySuccess;
-        HMSIAPManager.Instance.OnCheckIapAvailabilityFailure += OnCheckIapAvailabilityFailure;
-
-
-
-        HMSIAPManager.Instance.OnObtainProductInfoSuccess = (productInfoResultList) =>
-        {
-            Debug.Log("[HMS]: LoadStore1");
-            if (productInfoResultList != null)
-            {
-                Debug.Log("[HMS]: LoadStore2");
-                foreach (ProductInfoResult productInfoResult in productInfoResultList)
-                {
-                    foreach (ProductInfo productInfo in productInfoResult.ProductInfoList)
-                    {
-                        productInfoList.Add(productInfo);
-                        Debug.Log("[HMS]: productInfoList: " + productInfo.ProductName + " : " + productInfo.PriceType);
-                    }
-                }
-            }else{
-                Debug.Log("get cucked lol");
-            }
-        };
-
         // Uncomment below if InitializeOnStart is not enabled in Huawei > Kit Settings > IAP tab.
-        //HMSIAPManager.Instance.CheckIapAvailability();
-    }
-    
-
-    private void OnCheckIapAvailabilityFailure(HMSException obj)
-    {
-        statusText.text = "IAP is not ready.";
+        //HMSIAPManager.Instance.InitializeIAP();
     }
 
-    private void OnCheckIapAvailabilitySuccess()
+    #endregion
+
+    public void InitializeIAP()
     {
-        statusText.text = "IAP is ready.";
+        Debug.Log($"InitializeIAP");
+
+        HMSIAPManager.Instance.InitializeIAP();
     }
 
-    public void SignIn()
+    private void RestoreProducts()
     {
-        HMSIAPManager.Instance.CheckIapAvailability();
-    }
 
-    private void RestorePurchases()
-    {
-        HMSIAPManager.Instance.RestorePurchases((restoredProducts) =>
+        HMSIAPManager.Instance.RestorePurchaseRecords((restoredProducts) =>
         {
-            productPurchasedList = new List<InAppPurchaseData>(restoredProducts.InAppPurchaseDataList);
+            foreach (var item in restoredProducts.InAppPurchaseDataList)
+            {
+                if ((IAPProductType)item.Kind == IAPProductType.Consumable)
+                {
+                    Debug.Log($"Consumable: ProductId {item.ProductId} , SubValid {item.SubValid} , PurchaseToken {item.PurchaseToken} , OrderID  {item.OrderID}");
+                    consumablePurchaseRecord.Add(item);
+                }
+            }
         });
+
+        HMSIAPManager.Instance.RestoreOwnedPurchases((restoredProducts) =>
+        {
+            foreach (var item in restoredProducts.InAppPurchaseDataList)
+            {
+                if ((IAPProductType)item.Kind == IAPProductType.Subscription)
+                {
+                    Debug.Log($"Subscription: ProductId {item.ProductId} , ExpirationDate {item.ExpirationDate} , AutoRenewing {item.AutoRenewing} , PurchaseToken {item.PurchaseToken} , OrderID {item.OrderID}");
+                    activeSubscriptions.Add(item);
+                }
+
+                else if ((IAPProductType)item.Kind == IAPProductType.NonConsumable)
+                {
+                    Debug.Log($"NonConsumable: ProductId {item.ProductId} , DaysLasted {item.DaysLasted} , SubValid {item.SubValid} , PurchaseToken {item.PurchaseToken} ,OrderID {item.OrderID}");
+                    activeNonConsumables.Add(item);
+                }
+            }
+        });
+
     }
 
-    public void BuyProduct(string productID)
+    public void PurchaseProduct(string productID)
     {
-        HMSIAPManager.Instance.BuyProduct(productID);
+        Debug.Log($"PurchaseProduct");
+
+        HMSIAPManager.Instance.PurchaseProduct(productID);
     }
+
+    #region Callbacks
 
     private void OnBuyProductSuccess(PurchaseResultInfo obj)
     {
+        Debug.Log($"OnBuyProductSuccess");
+
         if (obj.InAppPurchaseData.ProductId == "removeads")
         {
-            // Hide banner Ad for example
-            //HMSAdsKitManager.Instance.HideBannerAd();
-            Debug.Log("[HMS] Huawei IAP Remving ads for playing");
+            IAPLog?.Invoke("Ads Removed!");
         }
-        else if (obj.InAppPurchaseData.ProductId == "gems100")
+        else if (obj.InAppPurchaseData.ProductId == "coins100")
         {
-            // Give your player coins here.
+            IAPLog?.Invoke("coins100 Purchased!");
         }
         else if (obj.InAppPurchaseData.ProductId == "premium")
         {
-            // Grant your player premium feature.
+            IAPLog?.Invoke("premium subscribed!");
         }
     }
+
+    private void OnInitializeIAPFailure(HMSException obj)
+    {
+        IAPLog?.Invoke("IAP is not ready.");
+    }
+
+    private void OnInitializeIAPSuccess()
+    {
+        IAPLog?.Invoke("IAP is ready.");
+
+        RestoreProducts();
+    }
+
+    private void OnBuyProductFailure(int code)
+    {
+        IAPLog?.Invoke("Purchase Fail.");
+    }
+
+    #endregion
 }

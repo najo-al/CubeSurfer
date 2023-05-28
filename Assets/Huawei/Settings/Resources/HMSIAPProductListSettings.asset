@@ -13,5 +13,13 @@ MonoBehaviour:
   m_Name: HMSIAPProductListSettings
   m_EditorClassIdentifier: 
   settings:
-    _keys: []
-    _values: []
+    _keys:
+    - gems100
+    - gems500
+    - gems1000
+    - removeAds
+    _values:
+    - Consumable
+    - Consumable
+    - Consumable
+    - NonConsumable

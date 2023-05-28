@@ -20,6 +20,7 @@ internal class HMSPluginUpdater
         {
             if (SessionState.GetBool(sessionState, false)) return;
             SessionState.SetBool(sessionState, true);
+            HMSEditorUtils.HandleAssemblyDefinitions(HMSPluginSettings.Instance.Settings.GetBool(PluginToggleEditor.PluginEnabled, true));
         }
 
         Task.Delay(2000).ContinueWith(t =>
@@ -75,12 +76,10 @@ public class HMSPluginUpdateRequest : MonoBehaviour
         }
 
         var json = JsonUtility.FromJson<TagList>("{\"tags\":" + request.downloadHandler.text + "}");
-        string latestVersionString = json.tags[0].name.RemoveAfter('-').Replace("v", "");
+        string latestVersionString = FindtheLatestVersion(json);
         string currentVersionString = File.ReadAllText(Application.dataPath + "/Huawei/VERSION");
 
-        int latestVersion = int.Parse(latestVersionString.Replace(".", ""));
-        int localVersion = int.Parse(currentVersionString.Replace(".", ""));
-        if (latestVersion > localVersion)
+        if (Int64.Parse(latestVersionString.Replace(".", "0").PadRight(8, '0')) > Int64.Parse(currentVersionString.Replace(".", "0").PadRight(8, '0')))
         {
             string updateMessage = "A new version of the HMS Unity Plugin (" + latestVersionString + ") is available. You are currently using " + currentVersionString;
 
@@ -105,6 +104,28 @@ public class HMSPluginUpdateRequest : MonoBehaviour
         }
 
         DestroyImmediate(gameObject);
+    }
+
+    private string FindtheLatestVersion(TagList list)
+    {
+        var latestVersion = "0.0.0";
+        for (int i = 0; i < list.tags.Length; i++)
+        {
+            try
+            {
+                string tempVer = list.tags[i].name.RemoveAfter('-').Replace("v", "");
+                if (Int64.Parse(latestVersion.Replace(".", "0").PadRight(8, '0')) < Int64.Parse(tempVer.Replace(".", "0").PadRight(8, '0')))
+                {
+                    latestVersion = tempVer;
+                }
+            }
+            catch 
+            {
+                //Debug.LogError("Version parse error!"+ list.tags[i].name.RemoveAfter('-').Replace("v", ""));
+            }
+        }
+
+        return latestVersion;
     }
 
     private static void DisplayDialog(string latestVersionString, string updateMessage)

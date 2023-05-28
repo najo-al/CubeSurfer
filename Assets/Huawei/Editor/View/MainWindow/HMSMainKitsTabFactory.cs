@@ -1,15 +1,18 @@
 ﻿using HmsPlugin;
 using HmsPlugin.Button;
-using HmsPlugin.HelpBox;
 using HmsPlugin.Label;
+using HmsPlugin.TextField;
 using HmsPlugin.Toggle;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using UnityEditor;
+
 using UnityEngine;
 
 internal class HMSMainKitsTabFactory
@@ -17,6 +20,8 @@ internal class HMSMainKitsTabFactory
     private static string versionInfo = "";
 
     private static List<ToggleEditor> toggleEditors;
+    public static DisabledDrawer _disabledDrawer;
+    private static PluginToggleEditor pluginToggleEditor;
 
     static HMSMainKitsTabFactory()
     {
@@ -24,12 +29,13 @@ internal class HMSMainKitsTabFactory
         toggleEditors = new List<ToggleEditor>();
     }
 
-    public static TabView CreateTab(TabBar tabBar)
+    public static TabView CreateKitsTab(TabBar tabBar)
     {
         toggleEditors.Clear();
         var tab = new TabView("Kits");
         tabBar.AddTab(tab);
 
+        pluginToggleEditor = new PluginToggleEditor(tabBar);
         var adsToggleEditor = new AdsToggleEditor(tabBar);
         var accountEditor = new AccountToggleEditor();
         var gameServiceToggleEditor = new GameServiceToggleEditor(tabBar, accountEditor);
@@ -40,27 +46,54 @@ internal class HMSMainKitsTabFactory
         var remoteConfigToggleEditor = new RemoteConfigToggleEditor(tabBar, analyticsEditor);
         var crashToggleEditor = new CrashToggleEditor(analyticsEditor);
         var cloudDBToggleEditor = new CloudDBToggleEditor(tabBar, authEditor);
-        var driveToggleEditor = new DriveKitToggleEditor();
+        var driveToggleEditor = new DriveKitToggleEditor(accountEditor, pushToggleEditor);
         var nearbyServiceToggleEditor = new NearbyServiceToggleEditor();
         var appMessagingToggleEditor = new AppMessagingToggleEditor();
+        var appLinkingToggleEditor = new AppLinkingToggleEditor(analyticsEditor);
+        var locationToggleEditor = new LocationToggleEditor();
+        var scanToogleEditor = new ScanKitToggleEditor();
+        var cloudStorageToggleEditor = new CloudStorageToggleEditor();
+        var apmToggleEditor = new APMToggleEditor();
+        var modeling3DToggleEditor = new Modeling3dKitToggleEditor();
 
+        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), pluginToggleEditor, new Spacer()));
         tab.AddDrawer(new HorizontalLine());
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), adsToggleEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), gameServiceToggleEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), pushToggleEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), iapToggleEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), accountEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), analyticsEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), remoteConfigToggleEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), crashToggleEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), authEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), cloudDBToggleEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), driveToggleEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), nearbyServiceToggleEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalSequenceDrawer(new Spacer(), appMessagingToggleEditor, new Spacer()));
-        tab.AddDrawer(new HorizontalLine());
+        tab.AddDrawer(_disabledDrawer = new DisabledDrawer
+            (
+                new VerticalSequenceDrawer
+                (
+                    new HorizontalSequenceDrawer(new Spacer(), new Label("- HMS Core -").SetBold(true), new Spacer()),
+                    new HorizontalSequenceDrawer(new HorizontalLine()),
+                    new HorizontalSequenceDrawer(new Spacer(), accountEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), adsToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), analyticsEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), appLinkingToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), driveToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), gameServiceToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), iapToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), locationToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), nearbyServiceToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), pushToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), scanToogleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), new Clickable(new Label(guiContent: new GUIContent(EditorGUIUtility.FindTexture("_help"))), () => { Application.OpenURL("https://evilminddevs.gitbook.io/hms-unity-plugin_/kits-and-services/3d-modeling-kit/guides-and-references"); })
+                    , modeling3DToggleEditor, new Spacer()),
+                    new Spacer(),
+                    new HorizontalSequenceDrawer(new HorizontalLine()),
+                    new HorizontalSequenceDrawer(new Spacer(), new Label("- AppGallery Connect -").SetBold(true), new Spacer()),
+                    new HorizontalSequenceDrawer(new HorizontalLine()),
+                    new HorizontalSequenceDrawer(new Spacer(), appMessagingToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), apmToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), authEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), cloudDBToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), cloudStorageToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), crashToggleEditor, new Spacer()),
+                    new HorizontalSequenceDrawer(new Spacer(), remoteConfigToggleEditor, new Spacer())
+                    
+                )
+            ));
+        //tab.AddDrawer(new HorizontalLine());
         tab.AddDrawer(new Spacer());
-        tab.AddDrawer(new Clickable(new Label("HMS Unity Plugin v" + versionInfo).SetBold(true), () => { Application.OpenURL("https://github.com/EvilMindDevs/hms-unity-plugin/"); }));
+        tab.AddDrawer(new HorizontalSequenceDrawer(new Label("HMS Unity Plugin v" + versionInfo).SetBold(true), new Spacer(), new Clickable(new Label(guiContent: new GUIContent(EditorGUIUtility.FindTexture("_Help"))), () => { Application.OpenURL("https://evilminddevs.gitbook.io/hms-unity-plugin/"); })));
         tab.AddDrawer(new HelpboxAGConnectFile());
 
         toggleEditors.Add(adsToggleEditor);
@@ -76,6 +109,14 @@ internal class HMSMainKitsTabFactory
         toggleEditors.Add(driveToggleEditor);
         toggleEditors.Add(nearbyServiceToggleEditor);
         toggleEditors.Add(appMessagingToggleEditor);
+        toggleEditors.Add(appLinkingToggleEditor);
+        toggleEditors.Add(locationToggleEditor);
+        toggleEditors.Add(scanToogleEditor);
+        toggleEditors.Add(cloudStorageToggleEditor);
+        toggleEditors.Add(apmToggleEditor);
+        toggleEditors.Add(modeling3DToggleEditor);
+
+        _disabledDrawer.SetEnabled(!HMSPluginSettings.Instance.Settings.GetBool(PluginToggleEditor.PluginEnabled, true));
 
         return tab;
     }
@@ -83,5 +124,16 @@ internal class HMSMainKitsTabFactory
     public static List<ToggleEditor> GetEnabledEditors()
     {
         return toggleEditors.FindAll(c => c.Enabled);
+    }
+
+    public static void RefreshPluginStatus()
+    {
+        if (pluginToggleEditor != null)
+        {
+            pluginToggleEditor.RefreshDrawer(HMSPluginSettings.Instance.Settings.GetBool(PluginToggleEditor.PluginEnabled));
+            pluginToggleEditor.RefreshToggle();
+        }
+        if (toggleEditors != null && toggleEditors.Count > 0)
+            toggleEditors.ForEach(c => c.RefreshToggles());
     }
 }

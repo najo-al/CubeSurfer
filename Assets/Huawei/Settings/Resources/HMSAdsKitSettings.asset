@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     _keys:
+    - UseTestAds
     - EnableBannerAd
+    - ShowBannerOnLoad
     - EnableInterstitialAd
     - EnableRewardedAd
-    - UseTestAds
-    - ShowBannerOnLoad
+    - InterstitialAdID
     - RewardedAdID
     - BannerAdID
-    - InterstitialAdID
     _values:
-    - True
-    - True
-    - True
     - False
     - True
+    - True
+    - True
+    - True
+    - i2cpwux0dr
     - r5da6p3f3w
     - y3h2w8hiqy
-    - i2cpwux0dr

@@ -13076,6 +13076,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void StringBuilder_MakeRoom_m7038AA71C53BFD09
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void StringBuilder_ReplaceInPlaceAtChunk_m21EE23411818E574ABDB3358C3A16F01F5A4FE80 (StringBuilder_t * __this, StringBuilder_t ** ___chunk0, int32_t* ___indexInChunk1, Il2CppChar* ___value2, int32_t ___count3, const RuntimeMethod* method);
 // System.Void System.Text.StringBuilder::Remove(System.Int32,System.Int32,System.Text.StringBuilder&,System.Int32&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void StringBuilder_Remove_m398993E9EEF64D7E64933893F1AAFCB9DDC0FA85 (StringBuilder_t * __this, int32_t ___startIndex0, int32_t ___count1, StringBuilder_t ** ___chunk2, int32_t* ___indexInChunk3, const RuntimeMethod* method);
+// System.String System.Boolean::ToString()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Boolean_ToString_m59BB8456DD05A874BBD756E57EA8AD983287015C (bool* __this, const RuntimeMethod* method);
 // System.Globalization.CultureInfo System.Globalization.CultureInfo::get_CurrentCulture()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR CultureInfo_t1B787142231DB79ABDCE0659823F908A040E9A98 * CultureInfo_get_CurrentCulture_m45CEB001D1509B8171C3557DD56C7521A0F5803E (const RuntimeMethod* method);
 // System.String System.Byte::ToString(System.IFormatProvider)
@@ -16312,6 +16314,17 @@ IL_0067:
 IL_0077:
 	{
 		return __this;
+	}
+}
+// System.Text.StringBuilder System.Text.StringBuilder::Append(System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR StringBuilder_t * StringBuilder_Append_m935197D3AEC6FCDB774EAD79B3A222DBE8CABEA6 (StringBuilder_t * __this, bool ___value0, const RuntimeMethod* method)
+{
+	{
+		String_t* L_0;
+		L_0 = Boolean_ToString_m59BB8456DD05A874BBD756E57EA8AD983287015C((bool*)(&___value0), /*hidden argument*/NULL);
+		StringBuilder_t * L_1;
+		L_1 = StringBuilder_Append_mD02AB0C74C6F55E3E330818C77EC147E22096FB1(__this, L_0, /*hidden argument*/NULL);
+		return L_1;
 	}
 }
 // System.Text.StringBuilder System.Text.StringBuilder::Append(System.Byte)

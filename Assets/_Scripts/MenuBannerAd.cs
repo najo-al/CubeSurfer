@@ -7,7 +7,7 @@ public class MenuBannerAd : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     HMSAdsKitManager.Instance.ShowBannerAd();   
+    //  HMSAdsKitManager.Instance.ShowBannerAd();   
     }
     void update(){
         
