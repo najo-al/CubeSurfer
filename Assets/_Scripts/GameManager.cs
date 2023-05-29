@@ -47,10 +47,8 @@ public class GameManager : MonoBehaviour
     
     gemCountText.text = (gemCount.ToString());
     PlayerPrefs.SetInt("gemCount", gemCount);
-    Debug.Log("set gem count to " + PlayerPrefs.GetInt("gemCount"));
     if (startPrompt.activeInHierarchy == false)
     {
-      Debug.Log("returned empty screen startPrompt.activeInHierarchy");
       return ;
     }
     if (Input.GetMouseButtonDown(0))

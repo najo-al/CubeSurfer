@@ -182,21 +182,6 @@ public class IAPManager : MonoBehaviour
 
     }
 
-    private void RestoreProducts()
-    {
-        HMSIAPManager.Instance.RestorePurchaseRecords((restoredProducts) =>
-        {
-            foreach (var item in restoredProducts.InAppPurchaseDataList)
-            {
-                if ((IAPProductType)item.Kind == IAPProductType.Consumable)
-                {
-                    Debug.Log($"Consumable: ProductId {item.ProductId} , SubValid {item.SubValid} , PurchaseToken {item.PurchaseToken} , OrderID  {item.OrderID}");
-                    consumablePurchaseRecord.Add(item);
-                }
-            }
-        });
-    }
-
     private void OnBuyProductFailure(int code)
     {
         if (code == OrderStatusCode.ORDER_PRODUCT_OWNED)
