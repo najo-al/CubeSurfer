@@ -2,8 +2,8 @@
     "m_SelectedDeviceId": "R58R635H3JH",
     "m_SelectedPackage": {
         "deviceId": "R58R635H3JH",
-        "name": "com.MNI.UnityAUProject2.huawei",
-        "processId": 12614,
+        "name": "com.MNI.cubeSurfer.huawei",
+        "processId": 21686,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -13,18 +13,6 @@
             "name": "com.sec.android.app.launcher",
             "processId": 2788,
             "exited": false
-        },
-        {
-            "deviceId": "R58R635H3JH",
-            "name": "com.MNI.cubeSurfer.huawei",
-            "processId": 32431,
-            "exited": true
-        },
-        {
-            "deviceId": "R58R635H3JH",
-            "name": "com.cubesurferuni.huawei",
-            "processId": 24240,
-            "exited": true
         },
         {
             "deviceId": "R58R635H3JH",
@@ -42,6 +30,18 @@
             "deviceId": "R58R635H3JH",
             "name": "com.MNI.UnityAUProject2.huawei",
             "processId": 12614,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R635H3JH",
+            "name": "com.MNI.cubeSurfer.huawei",
+            "processId": 20282,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R635H3JH",
+            "name": "com.MNI.cubeSurfer.huawei",
+            "processId": 21686,
             "exited": false
         }
     ],

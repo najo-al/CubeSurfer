@@ -30,12 +30,15 @@ public class GameManager : MonoBehaviour
 
   void Start()
   { 
+    
     gemCount = PlayerPrefs.GetInt("gemCount", 0);
-    if(PlayerPrefs.GetInt("showAds") == 1)
+      
+    Debug.Log("showing ads: " + showAds);
+    if(PlayerPrefs.GetInt("showAds", 1) == 1){
       showAds = true;
-    else
+    }else{
       showAds = false;
-
+    }
     AudioListener.volume = 0.5f;
     Time.timeScale = 1;
 
@@ -55,10 +58,10 @@ public class GameManager : MonoBehaviour
     gemCountText.text = (gemCount.ToString());
     PlayerPrefs.SetInt("gemCount", gemCount);
     if(showAds)
-      PlayerPrefs.SetInt("showAds", 1);
+    PlayerPrefs.SetInt("showAds", 1);
     else
-      PlayerPrefs.SetInt("showAds", 0);
-    
+    PlayerPrefs.SetInt("showAds", 0); 
+
     if (startPrompt.activeInHierarchy == false)
     {
       return ;
