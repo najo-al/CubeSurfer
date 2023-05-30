@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -143,6 +144,8 @@ public class PlayerController : MonoBehaviour
 
   public void GameOver()
   {
+
+    // SceneManager.LoadScene(1);
     FindObjectOfType<PlayerMovement>().isMoving = false;
     FindObjectOfType<GameManager>().gemCounter.SetActive(false);
     FindObjectOfType<GameManager>().progressBar.SetActive(false);

@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using TMPro;
+using HmsPlugin;
 
 
 public class GameManager : MonoBehaviour
 {
 
+  public AdsManager adsManager;
   public GameObject mainMenu;
   public GameObject startPrompt;
   public GameObject gemCounter;
@@ -16,15 +18,28 @@ public class GameManager : MonoBehaviour
   public GameObject gameButtons;
   public GameObject mutedButton;
   public GameObject pauseMenu;
+  public GameObject watchAdsButtonVic;
+  public GameObject watchAdsButtonDef;
   public static bool restartGame = false;
-  public int gemCount = 0;
+  public bool showAds = true;
+  public GameObject StoreScreen;
+  public IAPManager iapManager;
+  public int gemCount = 0; 
   public TMP_Text gemCountText;
   bool audioEnabled = true;
 
   void Start()
-  {
+  { 
+    
+    gemCount = PlayerPrefs.GetInt("gemCount", 0);
+      
+    Debug.Log("showing ads: " + showAds);
+    if(PlayerPrefs.GetInt("showAds", 1) == 1){
+      showAds = true;
+    }else{
+      showAds = false;
+    }
     AudioListener.volume = 0.5f;
-
     Time.timeScale = 1;
 
     if (restartGame)
@@ -33,14 +48,23 @@ public class GameManager : MonoBehaviour
     }
 
   }
+  public void setShowAds(){
+    showAds = !showAds;
+  }
 
   void Update()
   {
+    
     gemCountText.text = (gemCount.ToString());
+    PlayerPrefs.SetInt("gemCount", gemCount);
+    if(showAds)
+    PlayerPrefs.SetInt("showAds", 1);
+    else
+    PlayerPrefs.SetInt("showAds", 0); 
 
     if (startPrompt.activeInHierarchy == false)
     {
-      return;
+      return ;
     }
     if (Input.GetMouseButtonDown(0))
     {
@@ -51,6 +75,31 @@ public class GameManager : MonoBehaviour
     }
   }
 
+  public void AddGemsCount(int count){
+    gemCount+= count;
+    PlayerPrefs.SetInt("gemCount", gemCount);
+  }
+
+  public void OpenBuyScreen() {
+    mainMenu.SetActive(false);
+    StoreScreen.SetActive(true);
+  }
+
+  public void CloseBuyScreen(){
+    StoreScreen.SetActive(false);
+    mainMenu.SetActive(true);
+  }
+  
+
+  public void DestroyWatchAdsButton(){
+    Destroy(watchAdsButtonVic);
+    Destroy(watchAdsButtonDef);
+  }
+  public void AddGems(){
+    gemCount *= 2;
+    PlayerPrefs.SetInt("gemCount", gemCount);
+
+  }
   public void StartGame()
   {
     Destroy(mainMenu);
@@ -69,7 +118,6 @@ public class GameManager : MonoBehaviour
   {
     Time.timeScale = 1;
     pauseMenu.SetActive(false);
-
   }
 
   public void RestartGame()

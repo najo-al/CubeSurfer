@@ -62,7 +62,7 @@ Material:
     - _LightAngle: 3.1416
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
-    - _OutlineSoftness: 0
+    - _OutlineSoftness: 0.509
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
     - _OutlineWidth: 0
@@ -120,7 +120,8 @@ MonoBehaviour:
   materialHashCode: 1061820214
   m_Version: 1.1.0
   m_SourceFontFileGUID: fddc238eece00e548b9764033743796b
-  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: fddc238eece00e548b9764033743796b, type: 3}
+  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: fddc238eece00e548b9764033743796b,
+    type: 3}
   m_SourceFontFile: {fileID: 12800000, guid: fddc238eece00e548b9764033743796b, type: 3}
   m_AtlasPopulationMode: 1
   m_FaceInfo:
