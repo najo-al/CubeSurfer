@@ -156,7 +156,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.MNI.UnityAUProject2.huawei
+    Android: com.MNI.cubeSurfer.huawei
     Standalone: com.DefaultCompany.CubeSurfer
   buildNumber:
     Standalone: 0

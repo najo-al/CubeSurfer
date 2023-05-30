@@ -2,36 +2,12 @@
     "m_SelectedDeviceId": "R58R635H3JH",
     "m_SelectedPackage": {
         "deviceId": "R58R635H3JH",
-        "name": "com.MNI.cubeSurfer.huawei",
-        "processId": 5711,
+        "name": "com.MNI.UnityAUProject2.huawei",
+        "processId": 12614,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "R58R635H3JH",
-            "name": "com.MNI.cubeSurfer.huawei",
-            "processId": 10697,
-            "exited": true
-        },
-        {
-            "deviceId": "R58R635H3JH",
-            "name": "com.sec.android.app.launcher",
-            "processId": 3818,
-            "exited": true
-        },
-        {
-            "deviceId": "R58R635H3JH",
-            "name": "com.MNI.cubeSurfer.huawei",
-            "processId": 9246,
-            "exited": true
-        },
-        {
-            "deviceId": "R58R635H3JH",
-            "name": "com.MNI.cubeSurfer.huawei",
-            "processId": 10684,
-            "exited": true
-        },
         {
             "deviceId": "R58R635H3JH",
             "name": "com.sec.android.app.launcher",
@@ -41,7 +17,31 @@
         {
             "deviceId": "R58R635H3JH",
             "name": "com.MNI.cubeSurfer.huawei",
-            "processId": 5711,
+            "processId": 32431,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R635H3JH",
+            "name": "com.cubesurferuni.huawei",
+            "processId": 24240,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R635H3JH",
+            "name": "com.cubesurferuni.huawei",
+            "processId": 3438,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R635H3JH",
+            "name": "com.cubesurferuni.huawei",
+            "processId": 4082,
+            "exited": true
+        },
+        {
+            "deviceId": "R58R635H3JH",
+            "name": "com.MNI.UnityAUProject2.huawei",
+            "processId": 12614,
             "exited": false
         }
     ],

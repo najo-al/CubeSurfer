@@ -27,21 +27,21 @@
 	},
 	"client":{
 		"cp_id":"30090000035027516",
-		"product_id":"388421841221497854",
-		"client_id":"1166794991180205504",
-		"client_secret":"1F6C07B99F4A93563BD8CD775E4D7DCB0B6B02A7C9F428C1DF36A7147BD5DFF5",
-		"project_id":"388421841221497854",
-		"app_id":"108401437",
-		"api_key":"DAEDAIISA0xHxIn8Yumz+Z/y5gL1Yl5ErycQ0oLC2otqbuptNH6QcKJvdl+LBOgQaYvNI1d8A0XNKagPsorynQyfjz3nL0Cjh6QLFA==",
-		"package_name":"com.MNI.UnityAUProject2.huawei"
+		"product_id":"388421841221477991",
+		"client_id":"1157989299350687616",
+		"client_secret":"DC2B350F12EA4156B87EFE6E67EF03F83EDB76D09C4D2F847538E710E4D34547",
+		"project_id":"388421841221477991",
+		"app_id":"108294941",
+		"api_key":"DAEDAJEYbndGEF/IeacyBYlKHL7s/8CH1qH/GoAJl9DmfrA+PkLilgmANI7HGQYFuOpiQ9QnRvfS0aC4CjO/Ol54vC0Rqs9+QT/uCA==",
+		"package_name":"com.MNI.cubeSurfer.huawei"
 	},
 	"oauth_client":{
-		"client_id":"108401437",
+		"client_id":"108294941",
 		"client_type":1
 	},
 	"app_info":{
-		"app_id":"108401437",
-		"package_name":"com.MNI.UnityAUProject2.huawei"
+		"app_id":"108294941",
+		"package_name":"com.MNI.cubeSurfer.huawei"
 	},
 	"service":{
 		"analytics":{
@@ -79,31 +79,17 @@
 	"configuration_version":"3.0",
 	"appInfos":[
 		{
-			"package_name":"com.MNI.UnityAUProject2.huawei",
+			"package_name":"com.MNI.cubeSurfer.huawei",
 			"client":{
-				"app_id":"108401437"
+				"app_id":"108294941"
 			},
 			"app_info":{
-				"package_name":"com.MNI.UnityAUProject2.huawei",
-				"app_id":"108401437"
+				"package_name":"com.MNI.cubeSurfer.huawei",
+				"app_id":"108294941"
 			},
 			"oauth_client":{
 				"client_type":1,
-				"client_id":"108401437"
-			}
-		},
-		{
-			"package_name":"com.MNI.UnityAUProject.huawei",
-			"client":{
-				"app_id":"108399851"
-			},
-			"app_info":{
-				"package_name":"com.MNI.UnityAUProject.huawei",
-				"app_id":"108399851"
-			},
-			"oauth_client":{
-				"client_type":1,
-				"client_id":"108399851"
+				"client_id":"108294941"
 			}
 		}
 	]

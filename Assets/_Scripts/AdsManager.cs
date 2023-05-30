@@ -13,15 +13,32 @@ public class AdsManager : MonoBehaviour
     [SerializeField]
 
     public GameManager gm;
+    public GameObject nativeAd;
+    public GameObject watchAdsButtonDef;
+    public GameObject watchAdsButtonVic;
 
     private void Start()
     {
+        if(gm.showAds){
+            nativeAd.SetActive(true);
+            watchAdsButtonDef.SetActive(true);
+            watchAdsButtonVic.SetActive(true);
+            HMSAdsKitManager.Instance.ShowBannerAd();
+
+        }else{
+            nativeAd.SetActive(false);
+            watchAdsButtonDef.SetActive(false);
+            watchAdsButtonVic.SetActive(false);
+            HMSAdsKitManager.Instance.HideBannerAd();
+
+        }
         HMSAdsKitManager.Instance.OnRewarded = OnRewarded;
         HMSAdsKitManager.Instance.OnInterstitialAdClosed = OnInterstitialAdClosed;
     }
 
     public void ShowBannerAd()
     {
+        if(gm.showAds)
         HMSAdsKitManager.Instance.ShowBannerAd();
     }
 
@@ -41,17 +58,21 @@ public class AdsManager : MonoBehaviour
 
     public void ShowRewardedAd()
     {
+        if(gm.showAds){
         Debug.Log("[HMS] AdsManager ShowRewardedAd");
         HMSAdsKitManager.Instance.OnRewarded = OnRewarded;
         HMSAdsKitManager.Instance.ShowRewardedAd();
+        }
 
 
     }
 
     public void ShowInterstitialAd()
     {
-        Debug.Log("[HMS] AdsManager ShowInterstitialAd");
-        HMSAdsKitManager.Instance.ShowInterstitialAd();
+        if(gm.showAds){
+            Debug.Log("[HMS] AdsManager ShowInterstitialAd");
+            HMSAdsKitManager.Instance.ShowInterstitialAd();
+        }
     }
 
 
